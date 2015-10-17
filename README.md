@@ -18,7 +18,7 @@ You can type the command **'make help'** to get more operations, as follows:
 	make uboot-clean     - Clean uboot  
 	make clean           - Clean all object files
 
-For more information about the using of the *linux-actions-bsp*, please visit the LeMaker wiki at <http://wiki.lemaker.org/LeMaker_Guitar:How_to_use_LeMaker_Guitar_SDK>
+For more information about the using of the *linux-actions-bsp*, please visit the LeMaker wiki at <http://wiki.lemaker.org/LeMaker_Guitar:How_to_use_LeMaker_Guitar_BSP>
 
 ## Firmware Package
 The source code will generate a Linux Platform Firmware with *"xxx.hwpack.tar.xz"* when you run the command **'make hwpack'**, and the package will be saved to the directory **"output"**.  
