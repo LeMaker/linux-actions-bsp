@@ -1,0 +1,9 @@
+[submodule "u-boot-actions"]
+	path = u-boot-actions
+	url = https://github.com/LeMaker/u-boot-actions.git
+[submodule "linux-actions"]
+	path = linux-actions
+	url = https://github.com/LeMaker/linux-actions.git
+[submodule "owl-actions"]
+	path = owl-actions
+	url = https://github.com/LeMaker/owl-actions.git
