@@ -1,5 +1,5 @@
 The Source Code for the S500 SOC is based on the Actions SDK. We have re-adjusted the structure of directory, and fix some bugs for the LeMaker Guitar.
-It includes the "linux kernel(linux-actions)" "u-boot(u-boot-actions)" and "owl-actions" and so on, the "owl-actions" directory that includes some tools, 
+It includes the "linux kernel (linux-actions)" "u-boot (u-boot-actions)" and "owl-actions" and so on, the "owl-actions" directory that includes some tools, 
 scripts and configuration of the different boards.
 
 ## Usage
