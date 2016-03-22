@@ -1,5 +1,5 @@
 
-.PHONY: all clean linux-clean uboot-clean bootloader-clean
+.PHONY: all clean linux-clean uboot-clean bootloader-clean linux-mrproper uboot-mrproper update
 .PHONY: linux linux-config uboot uboot-config bootloader rootfs misc md5sum hwpack
 
 CONFILE=.config
@@ -110,12 +110,38 @@ linux-clean:
 uboot-clean:
 	$(Q)$(MAKE) -C $(UBOOT_SRC) CROSS_COMPILE=$(CROSS_COMPILE) O=$(UBOOT_OUT_DIR) clean
 
+linux-mrproper:
+	$(Q)$(MAKE) -C $(KERNEL_SRC) CROSS_COMPILE=$(CROSS_COMPILE) ARCH=$(ARCH) O=$(KERNEL_OUT_DIR) mrproper
+	$(Q)$(MAKE) -C $(KERNEL_SRC) CROSS_COMPILE=$(CROSS_COMPILE) ARCH=$(ARCH) mrproper
+
+uboot-mrproper:
+	$(Q)$(MAKE) -C $(UBOOT_SRC) CROSS_COMPILE=$(CROSS_COMPILE) O=$(UBOOT_OUT_DIR) mrproper
+	$(Q)$(MAKE) -C $(UBOOT_SRC) CROSS_COMPILE=$(CROSS_COMPILE) mrproper
+
 bootloader-clean:
 	@echo ""
 clean:
 	rm -f   $(TOP_DIR)/.config
 	rm -rf 	$(TOP_DIR)/output
 	rm -rf  $(TOP_DIR)/build
+
+update:
+ifneq ($(strip $(wildcard $(KERNEL_SRC)/.git)),)
+ifneq ($(strip $(wildcard $(UBOOT_SRC)/.git)),)
+ifneq ($(strip $(wildcard $(OWL_DIR)/.git)),)
+	$(Q)git stash
+	$(Q)git pull --rebase
+	$(Q)git submodule -q init 
+	$(Q)git submodule -q foreach git stash save -q --include-untracked "make update stash"
+	-$(Q)git submodule -q foreach git fetch -q
+	-$(Q)git submodule -q foreach "git rebase origin HEAD || :"
+	-$(Q)git submodule -q foreach "git stash pop -q || :"
+	-$(Q)git stash pop -q
+	$(Q)git submodule status
+endif
+endif
+endif
+
 help:
 	@echo ""
 	@echo "Usage:"
@@ -127,6 +153,9 @@ help:
 	@echo "  make uboot           - Builds u-boot"
 	@echo "  make uboot-config    - Menuconfig"
 	@echo "  make uboot-clean     - Clean uboot"
+	@echo "  make linux-mrproper"
+	@echo "  make uboot-mrproper"
 	@echo ""
+	@echo "  make update          - sync all subproject"
 	@echo "  make clean           - Clean all object files"
 	@echo ""

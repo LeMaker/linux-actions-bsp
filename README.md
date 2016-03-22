@@ -10,12 +10,15 @@ scripts and configuration of the different boards.
 You can type the command **'make help'** to get more operations, as follows:    
 
 	make hwpack          - Builds platform firmware package
-	make linux           - Builds linux kernel   
-	make linux-clean     - Clean linux kernel  
-	make linux-config    - Menuconfig  
-	make uboot           - Builds u-boot  
-	make uboot-config    - Menuconfig  
-	make uboot-clean     - Clean uboot  
+	make linux           - Builds linux kernel
+	make linux-clean     - Clean linux kernel
+	make linux-config    - Menuconfig
+	make uboot           - Builds u-boot
+	make uboot-config    - Menuconfig
+	make uboot-clean     - Clean uboot
+	make linux-mrproper
+	make uboot-mrproper
+	make update          - sync all subproject
 	make clean           - Clean all object files
 
 For more information about the using of the *linux-actions-bsp*, please visit the LeMaker wiki at <http://wiki.lemaker.org/LeMaker_Guitar:How_to_use_LeMaker_Guitar_BSP>
