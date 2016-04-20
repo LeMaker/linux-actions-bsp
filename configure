@@ -12,8 +12,7 @@ unset MENU_CHOICES_ARRAY
 
 notice_info(){
 echo -e "\nNOTE:"
-echo -e "<1> You'd better run 'make update' before compilation, this will synchronize automatically all subproject.
-And if you get the error like \"make: *** No rule to make target 'update'. Stop.\", run 'git pull' in the current directory first."
+echo -e "<1> You'd better run 'make update' before compilation, this will update all subproject."
 echo -e "<2> If you need to compile another board type, run 'make clean' first, and then use './configure' to choose board type."
 }
 
